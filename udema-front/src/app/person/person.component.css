@@ -1,0 +1,12 @@
+
+img {
+    width: 64px;
+    height: auto;
+    border-radius: 50%;
+    transition-duration: 5s;
+}
+
+img:hover {
+    width: 500px;
+    height: auto;
+}

@@ -1,0 +1,8 @@
+<h4>Course info</h4>
+<ul>
+    @for (character of characters; track character) {
+        <li (click)="fav(character.name)">Name: {{character.name}}</li>
+        <li>Age: {{character.age}}</li>
+        <br>
+    }
+</ul>
