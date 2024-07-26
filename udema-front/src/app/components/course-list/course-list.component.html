@@ -1,0 +1,14 @@
+<!-- src/app/components/course-list/course-list.component.html -->
+<div>
+    <h2>Courses</h2>
+    <ul>
+      <li *ngFor="let course of courses">
+        {{ course.name }} - {{ course.description }}
+        @if (course.id !== undefined) {
+          <button button (click)="deleteCourse(course.id)">Delete</button>
+        }
+        <!-- TODO: -->
+      </li>
+    </ul>
+  </div>
+  

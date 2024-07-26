@@ -1,0 +1,13 @@
+<!-- src/app/components/professor-list/professor-list.component.html -->
+<div>
+  <h2>Professors</h2>
+  <ul>
+    <li *ngFor="let professor of professors">
+      {{ professor.name }} {{ professor.surname }} - {{ professor.email }}
+      @if (professor.id !== undefined) {
+        <button (click)="deleteProfessor(professor.id)">Delete</button>
+      }
+      <!-- TODO: -->
+    </li>
+  </ul>
+</div>

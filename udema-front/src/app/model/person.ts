@@ -1,14 +1,10 @@
-
-export abstract class Person {
-    constructor(
-        public id: number,
-        public name: string,
-        public surname: string,
-        public age: number,
-        public email: string,
-        public password: string
-    ) {}
-
-    abstract register(): void;
-    abstract login(email: string, password: string): void;
-}
+// src/app/models/person.model.ts
+export interface Person {
+    id?: number;
+    name: string;
+    surname: string;
+    email: string;
+    password: string;
+    dateOfBirth: Date;
+  }
+  

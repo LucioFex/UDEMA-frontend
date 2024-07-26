@@ -1,0 +1,13 @@
+<!-- src/app/components/class-list/class-list.component.html -->
+<div>
+  <h2>Classes</h2>
+  <ul>
+    <li *ngFor="let class of classes">
+      {{ class.number }} - {{ class.classroom }} - {{ class.date | date }}
+      @if (class.id !== undefined) {
+        <button (click)="deleteClass(class.id!)">Delete</button>
+      }
+      <!-- TODO: -->
+    </li>
+  </ul>
+</div>
