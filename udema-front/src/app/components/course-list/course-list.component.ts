@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CourseService } from '../../services/course.service';
 import { Course } from '../../model/course';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.css'],
-  imports: [CommonModule, CourseListComponent]
+  imports: [CommonModule, CourseListComponent, HeaderComponent]
 })
 export class CourseListComponent implements OnInit {
   courses: Course[] = [];

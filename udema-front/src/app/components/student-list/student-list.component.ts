@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentService } from '../../services/student.service';
 import { Student } from '../../model/student';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-student-list',
   standalone: true,
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, HeaderComponent]
 })
 export class StudentListComponent implements OnInit {
   students: Student[] = [];

@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfessorService } from '../../services/professor.service';
 import { Professor } from '../../model/professor';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-professor-list',
   standalone: true,
   templateUrl: './professor-list.component.html',
   styleUrls: ['./professor-list.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, HeaderComponent]
 })
 export class ProfessorListComponent implements OnInit {
   professors: Professor[] = [];

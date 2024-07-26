@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClassService } from '../../services/class.service';
 import { Class } from '../../model/class';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-class-list',
   standalone: true,
   templateUrl: './class-list.component.html',
   styleUrls: ['./class-list.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, HeaderComponent]
 })
 export class ClassListComponent implements OnInit {
   classes: Class[] = [];
