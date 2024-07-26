@@ -14,11 +14,12 @@ import { Professor } from '../../model/professor';
 export class ProfessorListComponent implements OnInit {
   professors: Professor[] = [];
 
-  constructor(private professorService: ProfessorService) { }
+  constructor(private professorService: ProfessorService) {}
 
   ngOnInit(): void {
     this.professorService.getProfessors().subscribe((data: Professor[]) => {
       this.professors = data;
+    }, error => {
     });
   }
 

@@ -10,5 +10,7 @@ export const routes: Routes = [
   { path: 'courses', component: CourseListComponent },
   { path: 'students', component: StudentListComponent },
   { path: 'professors', component: ProfessorListComponent },
-  { path: '', redirectTo: '/classes', pathMatch: 'full' }
+  { path: '', redirectTo: '/classes', pathMatch: 'full' },
+  { path: '**', redirectTo: '' }
 ];
+

@@ -2,12 +2,13 @@
 <div>
   <h2>Professors</h2>
   <ul>
-    <li *ngFor="let professor of professors">
-      {{ professor.name }} {{ professor.surname }} - {{ professor.email }}
-      @if (professor.id !== undefined) {
-        <button (click)="deleteProfessor(professor.id)">Delete</button>
-      }
-      <!-- TODO: -->
-    </li>
+    @for (professor of professors; track professor.id) {
+      <li>
+        {{ professor.name }} {{ professor.surname }} - {{ professor.email }}
+        @if (professor.id !== undefined) {
+          <button (click)="deleteProfessor(professor.id)">Delete</button>
+        }
+      </li>
+    }
   </ul>
 </div>

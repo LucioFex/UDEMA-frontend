@@ -10,7 +10,7 @@ import { Professor } from '../model/professor';
 export class ProfessorService {
   private apiUrl = 'http://localhost:8080/api/professors';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProfessors(): Observable<Professor[]> {
     return this.http.get<Professor[]>(this.apiUrl);

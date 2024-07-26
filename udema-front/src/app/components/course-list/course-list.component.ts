@@ -9,7 +9,7 @@ import { Course } from '../../model/course';
   standalone: true,
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule, CourseListComponent]
 })
 export class CourseListComponent implements OnInit {
   courses: Course[] = [];
