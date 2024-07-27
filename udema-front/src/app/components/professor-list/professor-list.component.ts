@@ -1,8 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { ProfessorService } from '../../services/professor.service';
-import { Professor } from '../../model/professor';
 import { FormsModule } from '@angular/forms';
+
+interface Professor {
+  id?: number;
+  name: string;
+  surname: string;
+  email: string;
+  dateOfBirth: Date;
+  submissionDate: Date;
+  password: string;
+}
 
 @Component({
   selector: 'app-professor-list',
@@ -13,34 +22,60 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProfessorListComponent implements OnInit {
   professors: Professor[] = [];
-  newProfessor: Partial<Professor> = {};
+  newProfessor: Professor = {
+    name: '',
+    surname: '',
+    email: '',
+    dateOfBirth: new Date(),
+    submissionDate: new Date(),
+    password: ''
+  };
 
-  constructor(private professorService: ProfessorService) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.professorService.getProfessors().subscribe((data: Professor[]) => {
+    this.fetchProfessors();
+  }
+
+  fetchProfessors(): void {
+    this.http.get<Professor[]>('http://localhost:8080/api/professors').subscribe(data => {
       this.professors = data;
-    }, error => {
-      console.error('Error fetching professors:', error);
     });
   }
 
   addProfessor(): void {
-    if (this.newProfessor.name && this.newProfessor.surname && this.newProfessor.email && this.newProfessor.dateOfBirth && this.newProfessor.password) {
-      this.professorService.addProfessor(this.newProfessor as Professor).subscribe((newProfessor: Professor) => {
-        this.professors.push(newProfessor);
-        this.newProfessor = {};
-      }, error => {
+    console.log('Adding professor:', this.newProfessor);
+    this.http.post('http://localhost:8080/api/professors', this.newProfessor).subscribe({
+      next: response => {
+        console.log('Professor added successfully:', response);
+        this.fetchProfessors(); // Refresh the list
+        this.resetForm(); // Clear the form fields
+      },
+      error: error => {
         console.error('Error adding professor:', error);
-      });
-    }
+        alert('Failed to add professor: ' + error.message); // Show an alert
+      }
+    });
   }
 
-  deleteProfessor(professorId: number): void {
-    this.professorService.deleteProfessor(professorId).subscribe(() => {
-      this.professors = this.professors.filter(p => p.id !== professorId);
-    }, error => {
-      console.error('Error deleting professor:', error);
+  deleteProfessor(id: number): void {
+    this.http.delete(`http://localhost:8080/api/professors/${id}`).subscribe(() => {
+      this.fetchProfessors(); // Refresh the list
     });
+  }
+
+  resetForm(): void {
+    this.newProfessor = {
+      name: '',
+      surname: '',
+      email: '',
+      dateOfBirth: new Date(),
+      submissionDate: new Date(),
+      password: ''
+    };
+  }
+
+  trackById(index: number, professor: Professor): number {
+    return professor.id!;
   }
 }

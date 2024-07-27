@@ -1,4 +1,3 @@
-
 <main>
   <div class="main-container">
     <h2>Students</h2>
@@ -22,6 +21,14 @@
       <div class="mb-3">
         <label for="studentDateOfBirth" class="form-label">Date of Birth</label>
         <input type="date" class="form-control" id="studentDateOfBirth" [(ngModel)]="newStudent.dateOfBirth" name="dateOfBirth" required>
+      </div>
+      <div class="mb-3">
+        <label for="studentSubmissionDate" class="form-label">Submission Date</label>
+        <input type="date" class="form-control" id="studentSubmissionDate" [(ngModel)]="newStudent.submissionDate" name="submissionDate" required>
+      </div>
+      <div class="mb-3">
+        <label for="studentPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="studentPassword" [(ngModel)]="newStudent.password" name="password" required>
       </div>
       <button type="submit" class="btn btn-primary">Add Student</button>
     </form>

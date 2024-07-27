@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { ClassService } from '../../services/class.service';
-import { Class } from '../../model/class';
 import { FormsModule } from '@angular/forms';
+
+interface Class {
+  id?: number;
+  number: number;
+  classroom: string;
+  date: string; // Mantenemos esto como string
+}
 
 @Component({
   selector: 'app-class-list',
@@ -13,34 +19,51 @@ import { FormsModule } from '@angular/forms';
 })
 export class ClassListComponent implements OnInit {
   classes: Class[] = [];
-  newClass: Partial<Class> = {};
+  newClass: Class = { number: 0, classroom: '', date: '' };
 
-  constructor(private classService: ClassService) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.classService.getClasses().subscribe((data: Class[]) => {
-      this.classes = data;
-    }, error => {
-      console.error('Error fetching classes:', error);
-    });
+    this.getClasses();
+  }
+
+  getClasses(): void {
+    this.http.get<Class[]>('http://localhost:8080/api/classes').subscribe(
+      (response) => {
+        this.classes = response;
+      },
+      (error) => {
+        console.error('Error fetching classes:', error);
+        alert('Error fetching classes.');
+      }
+    );
   }
 
   addClass(): void {
-    if (this.newClass.number && this.newClass.classroom && this.newClass.date) {
-      this.classService.addClass(this.newClass as Class).subscribe((newClass: Class) => {
-        this.classes.push(newClass);
-        this.newClass = {};
-      }, error => {
+    const formattedDate = this.newClass.date; // Asegúrate de que sea una cadena en el formato YYYY-MM-DD
+    console.log('Adding class with formatted date:', formattedDate);
+
+    this.http.post<Class>('http://localhost:8080/api/classes', { ...this.newClass, date: formattedDate }).subscribe(
+      (response) => {
+        this.classes.push(response);
+        this.newClass = { number: 0, classroom: '', date: '' }; // Restablece el formulario
+      },
+      (error) => {
         console.error('Error adding class:', error);
-      });
-    }
+        alert('Error adding class.');
+      }
+    );
   }
 
-  deleteClass(classId: number): void {
-    this.classService.deleteClass(classId).subscribe(() => {
-      this.classes = this.classes.filter(c => c.id !== classId);
-    }, error => {
-      console.error('Error deleting class:', error);
-    });
+  deleteClass(id: number): void {
+    this.http.delete(`http://localhost:8080/api/classes/${id}`).subscribe(
+      () => {
+        this.classes = this.classes.filter(c => c.id !== id);
+      },
+      (error) => {
+        console.error('Error deleting class:', error);
+        alert('Error deleting class.');
+      }
+    );
   }
 }
