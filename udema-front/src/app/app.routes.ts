@@ -1,4 +1,3 @@
-// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { ClassListComponent } from './components/class-list/class-list.component';
 import { CourseListComponent } from './components/course-list/course-list.component';

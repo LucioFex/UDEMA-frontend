@@ -1,14 +1,38 @@
-<!-- src/app/components/professor-list/professor-list.component.html -->
-<div>
-  <h2>Professors</h2>
-  <ul>
-    @for (professor of professors; track professor.id) {
-      <li>
-        {{ professor.name }} {{ professor.surname }} - {{ professor.email }}
-        @if (professor.id !== undefined) {
-          <button (click)="deleteProfessor(professor.id)">Delete</button>
-        }
-      </li>
-    }
-  </ul>
-</div>
+<main>
+  <div class="main-container">
+    <h2>Professors</h2>
+    <form (ngSubmit)="addProfessor()">
+      <div class="mb-3">
+        <label for="professorName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="professorName" [(ngModel)]="newProfessor.name" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="professorSurname" class="form-label">Surname</label>
+        <input type="text" class="form-control" id="professorSurname" [(ngModel)]="newProfessor.surname" name="surname" required>
+      </div>
+      <div class="mb-3">
+        <label for="professorEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="professorEmail" [(ngModel)]="newProfessor.email" name="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="professorDateOfBirth" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="professorDateOfBirth" [(ngModel)]="newProfessor.dateOfBirth" name="dateOfBirth" required>
+      </div>
+      <div class="mb-3">
+        <label for="professorPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="professorPassword" [(ngModel)]="newProfessor.password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Professor</button>
+    </form>
+    <ul class="list-group mt-4">
+      @for (professor of professors; track professor.id) {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ professor.name }} {{ professor.surname }} - {{ professor.email }}
+          @if (professor.id !== undefined) {
+            <button class="btn btn-danger btn-sm" (click)="deleteProfessor(professor.id)">Delete</button>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+</main>

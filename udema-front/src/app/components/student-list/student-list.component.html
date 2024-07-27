@@ -1,14 +1,39 @@
-<!-- src/app/components/student-list/student-list.component.html -->
-<div>
-  <h2>Classs</h2>
-  <ul>
-    @for (student of students; track student.id) {
-      <li>
-        {{ student.name }} {{ student.surname }} - {{ student.career }} - {{ student.email }}
-        @if (student.id !== undefined) {
-          <button (click)="deleteStudent(student.id)">Delete</button>
-        }
-      </li>
-    }
-  </ul>
-</div>
+
+<main>
+  <div class="main-container">
+    <h2>Students</h2>
+    <form (ngSubmit)="addStudent()">
+      <div class="mb-3">
+        <label for="studentName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="studentName" [(ngModel)]="newStudent.name" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="studentSurname" class="form-label">Surname</label>
+        <input type="text" class="form-control" id="studentSurname" [(ngModel)]="newStudent.surname" name="surname" required>
+      </div>
+      <div class="mb-3">
+        <label for="studentEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="studentEmail" [(ngModel)]="newStudent.email" name="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="studentCareer" class="form-label">Career</label>
+        <input type="text" class="form-control" id="studentCareer" [(ngModel)]="newStudent.career" name="career" required>
+      </div>
+      <div class="mb-3">
+        <label for="studentDateOfBirth" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="studentDateOfBirth" [(ngModel)]="newStudent.dateOfBirth" name="dateOfBirth" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Student</button>
+    </form>
+    <ul class="list-group mt-4">
+      @for (student of students; track student.id) {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ student.name }} {{ student.surname }} - {{ student.career }} - {{ student.email }}
+          @if (student.id !== undefined) {
+            <button class="btn btn-danger btn-sm" (click)="deleteStudent(student.id)">Delete</button>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+</main>

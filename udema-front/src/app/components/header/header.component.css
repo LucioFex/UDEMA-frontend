@@ -1,0 +1,12 @@
+/* src/app/components/header/header.component.css */
+.navbar {
+background-color: var(--primary-color);
+}
+
+.navbar-brand, .nav-link {
+color: var(--secondary-color) !important;
+}
+
+.nav-link:hover {
+color: var(--light-color) !important;
+}

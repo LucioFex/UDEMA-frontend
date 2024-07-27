@@ -1,4 +1,3 @@
-// src/app/services/professor.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,14 +9,14 @@ import { Professor } from '../model/professor';
 export class ProfessorService {
   private apiUrl = 'http://localhost:8080/api/professors';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getProfessors(): Observable<Professor[]> {
     return this.http.get<Professor[]>(this.apiUrl);
   }
 
-  addProfessor(professor: Professor): Observable<void> {
-    return this.http.post<void>(this.apiUrl, professor);
+  addProfessor(newProfessor: Professor): Observable<Professor> {
+    return this.http.post<Professor>(this.apiUrl, newProfessor);
   }
 
   deleteProfessor(professorId: number): Observable<void> {

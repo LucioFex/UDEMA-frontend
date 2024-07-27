@@ -1,4 +1,3 @@
-// src/app/models/course.model.ts
 import { Class } from './class';
 import { Student } from './student';
 import { Professor } from './professor';

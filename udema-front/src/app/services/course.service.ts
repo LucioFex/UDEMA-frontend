@@ -1,4 +1,3 @@
-// src/app/services/course.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,8 +15,8 @@ export class CourseService {
     return this.http.get<Course[]>(this.apiUrl);
   }
 
-  addCourse(course: Course): Observable<void> {
-    return this.http.post<void>(this.apiUrl, course);
+  addCourse(newCourse: Course): Observable<Course> {
+    return this.http.post<Course>(this.apiUrl, newCourse);
   }
 
   deleteCourse(courseId: number): Observable<void> {

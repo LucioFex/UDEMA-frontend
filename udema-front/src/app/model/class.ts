@@ -1,4 +1,3 @@
-// src/app/models/class.model.ts
 import { Course } from './course';
 
 export interface Class {

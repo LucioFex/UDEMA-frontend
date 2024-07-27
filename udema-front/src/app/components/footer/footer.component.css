@@ -1,0 +1,73 @@
+/* src/app/components/footer/footer.component.css */
+
+/* Estilo para el footer */
+footer {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+}
+
+footer a {
+  color: var(--secondary-color);
+}
+
+footer .bg-dark {
+  background-color: var(--primary-color) !important;
+}
+
+footer .text-secondary {
+  color: var(--secondary-color) !important;
+}
+
+footer .text-light {
+  color: var(--light-color) !important;
+}
+
+footer .text-dark {
+  color: var(--text-color) !important;
+}
+
+footer .container {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+footer .container .row .col-lg-6,
+footer .container .row .col-md-12 {
+  margin-bottom: 20px;
+}
+
+footer .container .row .col-lg-6 h5,
+footer .container .row .col-md-12 h5 {
+  color: var(--secondary-color);
+}
+
+footer .container .row .col-lg-6 p,
+footer .container .row .col-md-12 p {
+  color: var(--light-color);
+}
+
+footer .container .row .col-lg-6 ul li a,
+footer .container .row .col-md-12 ul li a {
+  color: var(--light-color);
+}
+
+footer .container .row .col-lg-6 ul li a:hover,
+footer .container .row .col-md-12 ul li a:hover {
+  color: var(--secondary-color);
+}
+
+footer .text-center {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-color);
+  padding: 10px 0;
+}
+
+footer .copyright-section {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-color);
+  padding: 10px 0;
+  margin-top: 20px; /* Para separar del contenido principal del footer */
+}

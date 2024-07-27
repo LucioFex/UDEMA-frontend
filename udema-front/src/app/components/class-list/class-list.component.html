@@ -1,14 +1,30 @@
-<!-- src/app/components/class-list/class-list.component.html -->
-<div>
-  <h2>Classs</h2>
-  <ul>
-    @for (class of classes; track class.id) {
-      <li>
-        {{ class.number }} - {{ class.classroom }} - {{ class.date | date }}
-        @if (class.id !== undefined) {
-          <button button (click)="deleteClass(class.id)">Delete</button>
-        }
-      </li>
-    }
-  </ul>
-</div>
+<main>
+  <div class="main-container">
+    <h2>Classes</h2>
+    <form (ngSubmit)="addClass()">
+      <div class="mb-3">
+        <label for="classNumber" class="form-label">Number</label>
+        <input type="number" class="form-control" id="classNumber" [(ngModel)]="newClass.number" name="number" required>
+      </div>
+      <div class="mb-3">
+        <label for="classClassroom" class="form-label">Classroom</label>
+        <input type="text" class="form-control" id="classClassroom" [(ngModel)]="newClass.classroom" name="classroom" required>
+      </div>
+      <div class="mb-3">
+        <label for="classDate" class="form-label">Date</label>
+        <input type="date" class="form-control" id="classDate" [(ngModel)]="newClass.date" name="date" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Class</button>
+    </form>
+    <ul class="list-group mt-4">
+      @for (class of classes; track class.id) {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ class.number }} - {{ class.classroom }} - {{ class.date | date }}
+          @if (class.id !== undefined) {
+            <button class="btn btn-danger btn-sm" (click)="deleteClass(class.id)">Delete</button>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+</main>
