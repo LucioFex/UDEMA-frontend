@@ -1,6 +1,3 @@
-/* src/app/app.component.css */
-
-/* Asegurarse de que todo el fondo de la aplicación tenga el color de fondo */
 :host {
     display: flex;
     flex-direction: column;

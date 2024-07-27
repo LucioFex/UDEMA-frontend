@@ -8,8 +8,8 @@ interface Professor {
   name: string;
   surname: string;
   email: string;
-  dateOfBirth: Date;
-  submissionDate: Date;
+  dateOfBirth: Date; // Usamos string y no date, porque sino se genera un error por conversión de tipos de datos con el back
+  submissionDate: Date; // Misma lógica
   password: string;
 }
 

@@ -7,7 +7,7 @@ interface Class {
   id?: number;
   number: number;
   classroom: string;
-  date: string; // Mantenemos esto como string
+  date: string; // Usamos string y no date, porque sino se genera un error por conversión de tipos de datos con el back
 }
 
 @Component({
@@ -40,13 +40,13 @@ export class ClassListComponent implements OnInit {
   }
 
   addClass(): void {
-    const formattedDate = this.newClass.date; // Asegúrate de que sea una cadena en el formato YYYY-MM-DD
+    const formattedDate = this.newClass.date;
     console.log('Adding class with formatted date:', formattedDate);
 
     this.http.post<Class>('http://localhost:8080/api/classes', { ...this.newClass, date: formattedDate }).subscribe(
       (response) => {
         this.classes.push(response);
-        this.newClass = { number: 0, classroom: '', date: '' }; // Restablece el formulario
+        this.newClass = { number: 0, classroom: '', date: '' };
       },
       (error) => {
         console.error('Error adding class:', error);

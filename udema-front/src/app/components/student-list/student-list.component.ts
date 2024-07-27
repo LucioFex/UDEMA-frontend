@@ -50,19 +50,19 @@ export class StudentListComponent implements OnInit {
     this.http.post('http://localhost:8080/api/students', this.newStudent).subscribe({
       next: response => {
         console.log('Student added successfully:', response);
-        this.fetchStudents(); // Refresh the list
-        this.resetForm(); // Clear the form fields
+        this.fetchStudents();
+        this.resetForm();
       },
       error: error => {
         console.error('Error adding student:', error);
-        alert('Failed to add student: ' + error.message); // Show an alert
+        alert('Failed to add student: ' + error.message);
       }
     });
   }
 
   deleteStudent(id: number): void {
     this.http.delete(`http://localhost:8080/api/students/${id}`).subscribe(() => {
-      this.fetchStudents(); // Refresh the list
+      this.fetchStudents();
     });
   }
 

@@ -1,15 +1,13 @@
-/* src/styles.css */
-
-/* Paleta de colores inspirada en el logo */
+/* Paleta de colores inspirada en la casa Slytherin */
 :root {
-  --primary-color: #1A472A; /* Verde oscuro */
-  --secondary-color: #C5B358; /* Dorado */
-  --background-color: #0F2A17; /* Fondo más oscuro */
-  --content-background-color: #1A472A; /* Fondo de contenido */
-  --footer-background-color: #0C1F12; /* Verde aún más oscuro para el footer */
-  --text-color: #E0E0E0; /* Texto claro */
-  --light-color: #FFFFFF; /* Blanco */
-  --dark-color: #000000; /* Negro */
+  --primary-color: #1A472A;
+  --secondary-color: #C5B358;
+  --background-color: #0F2A17;
+  --content-background-color: #1A472A;
+  --footer-background-color: #0C1F12;
+  --text-color: #E0E0E0;
+  --light-color: #FFFFFF;
+  --dark-color: #000000;
 }
 
 /* Aplicar a toda la página */
@@ -30,8 +28,8 @@ body {
 main {
   display: flex;
   flex: 1;
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
+  justify-content: center;
+  align-items: center;
 }
 
 .main-container {
@@ -39,12 +37,12 @@ main {
   color: var(--text-color);
   padding: 20px;
   border-radius: 10px;
-  max-width: 800px; /* Ajustar el ancho máximo */
-  width: 100%; /* Asegurarse de que tome el ancho completo hasta el máximo */
+  max-width: 800px;
+  width: 100%;
   margin: 20px;
 }
 
-/* Estilo para el header y footer */
+/* Estilo del header y footer */
 header {
   background-color: var(--primary-color);
   color: var(--text-color);

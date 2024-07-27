@@ -1,7 +1,7 @@
 import { Person } from './person';
 import { Course } from './course';
 
-export class Coordinator extends Person {
+/* export class Coordinator extends Person {
   constructor(
     id: number,
     name: string,
@@ -14,18 +14,19 @@ export class Coordinator extends Person {
   }
 
   register(): void {
-    // Implementación del método register
+    // TODO:
   }
 
   login(email: string, password: string): void {
-    // Implementación del método login
+    // TODO:
   }
 
   addCourse(course: Course): void {
-    // implementación
+    // TODO:
   }
 
   removeCourse(course: Course): void {
-    // implementación
+    // TODO:
   }
 }
+*/
