@@ -6,6 +6,7 @@
   --secondary-color: #C5B358; /* Dorado */
   --background-color: #0F2A17; /* Fondo más oscuro */
   --content-background-color: #1A472A; /* Fondo de contenido */
+  --footer-background-color: #0C1F12; /* Verde aún más oscuro para el footer */
   --text-color: #E0E0E0; /* Texto claro */
   --light-color: #FFFFFF; /* Blanco */
   --dark-color: #000000; /* Negro */
@@ -44,17 +45,17 @@ main {
 }
 
 /* Estilo para el header y footer */
-header, footer {
+header {
   background-color: var(--primary-color);
   color: var(--text-color);
 }
 
 footer {
-  width: 100%;
-  padding: 20px;
-  text-align: center;
-  background-color: var(--primary-color);
+  background-color: var(--footer-background-color);
   color: var(--text-color);
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
 }
 
 footer a {
@@ -62,7 +63,7 @@ footer a {
 }
 
 footer .bg-dark {
-  background-color: var(--primary-color) !important;
+  background-color: var(--footer-background-color) !important;
 }
 
 footer .text-secondary {
@@ -77,27 +78,48 @@ footer .text-dark {
   color: var(--text-color) !important;
 }
 
-/* Estilos del encabezado */
-.navbar {
-  background-color: var(--primary-color);
+footer .container {
+  background-color: var(--footer-background-color);
+  color: var(--text-color);
 }
 
-.navbar-brand, .nav-link {
-  color: var(--secondary-color) !important;
+footer .container .row .col-lg-6,
+footer .container .row .col-md-12 {
+  margin-bottom: 20px;
 }
 
-.nav-link:hover {
-  color: var(--light-color) !important;
+footer .container .row .col-lg-6 h5,
+footer .container .row .col-md-12 h5 {
+  color: var(--secondary-color);
+}
+
+footer .container .row .col-lg-6 p,
+footer .container .row .col-md-12 p {
+  color: var(--light-color);
+}
+
+footer .container .row .col-lg-6 ul li a,
+footer .container .row .col-md-12 ul li a {
+  color: var(--light-color);
+}
+
+footer .container .row .col-lg-6 ul li a:hover,
+footer .container .row .col-md-12 ul li a:hover {
+  color: var(--secondary-color);
+}
+
+footer .bg-secondary {
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Formularios y botones */
 .form-label, .form-control {
-  color: var(--text-color);
+  color: var(--secondary-color) !important; /* Texto dorado */
 }
 
 .form-control {
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--secondary-color) !important; /* Texto dorado */
   border: 1px solid var(--secondary-color);
 }
 
