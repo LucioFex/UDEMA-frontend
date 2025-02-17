@@ -15,7 +15,6 @@ export interface Student extends BaseUser {
 }
 
 export interface Professor extends BaseUser {
-  department?: string;
   title?: string;
   submissionDate: string;
 }

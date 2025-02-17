@@ -107,7 +107,7 @@ export class CourseDetailsComponent implements OnInit {
     if (!this.isProfessor || !this.course) return;
 
     const wasEnrolled = this.selectedStudentIds.has(student.id);
-    
+
     if (wasEnrolled) {
       this.apiService.removeStudentFromCourse(this.course.id, student.id).subscribe({
         next: () => {
