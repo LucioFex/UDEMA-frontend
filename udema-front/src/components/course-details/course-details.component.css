@@ -1,0 +1,39 @@
+.list-group-item.active {
+  background-color: var(--udema-green);
+  border-color: var(--udema-green);
+}
+
+.list-group-item.list-group-item-success {
+  color: white;
+}
+
+.list-group-item.active:hover {
+  background-color: var(--udema-green);
+  border-color: var(--udema-green);
+}
+
+.list-group-item {
+  transition: all 0.2s ease;
+}
+
+.list-group-item:hover {
+  transform: translateX(5px);
+  background-color: rgba(11, 77, 60, 0.05);
+}
+
+.table {
+  background-color: white;
+}
+
+.table th {
+  background-color: var(--udema-green);
+  color: white;
+}
+
+.card {
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}

@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg mb-4">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      UDEMA
+    </a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Courses
+      </a>
+      <a class="nav-link" routerLink="/directory" routerLinkActive="active">
+        Community
+      </a>
+      <ng-container *ngIf="!(authService.currentUser$ | async); else userMenu">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+      </ng-container>
+      <ng-template #userMenu>
+        <a class="nav-link" style="cursor: pointer;" (click)="logout()">Sign Out</a>
+      </ng-template>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

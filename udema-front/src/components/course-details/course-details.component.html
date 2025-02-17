@@ -1,0 +1,183 @@
+<div class="container mt-4">
+  <a routerLink="/" class="btn btn-outline-primary mb-4">← Back to Home</a>
+  
+  <div class="card" *ngIf="course">
+    <div class="card-body">
+      <h2 class="card-title">{{course.name}}</h2>
+      <p class="text-muted mb-4">{{course.description}}</p>
+      
+      <div class="row">
+        <div class="col-md-4">
+          <div class="mb-4">
+            <h4>Professor</h4>
+            <div class="card">
+              <div class="card-body py-2">
+                <ng-container *ngIf="course.professor; else noProfessor">
+                  <h5 class="mb-1">{{course.professor.name}}</h5>
+                  <p class="mb-1">{{course.professor.title || 'Professor'}}</p>
+                  <div class="mt-2" *ngIf="isProfessor">
+                    <button class="btn btn-danger btn-sm" (click)="removeProfessor()">
+                      Remove
+                    </button>
+                  </div>
+                </ng-container>
+                <ng-template #noProfessor>
+                  <p class="mb-2">No professor has been assigned to this course yet</p>
+                  <button 
+                    class="btn btn-success btn-sm" 
+                    (click)="showProfessorList = true"
+                    *ngIf="!showProfessorList && isProfessor">
+                    Assign
+                  </button>
+                  <div *ngIf="showProfessorList" class="mt-2">
+                    <h6 class="mb-2">Available Professors:</h6>
+                    <div class="list-group">
+                      <button
+                        *ngFor="let professor of availableProfessors"
+                        class="list-group-item list-group-item-action py-2"
+                        (click)="assignProfessor(professor.id)">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h6 class="mb-0">{{professor.name}}</h6>
+                            <small>{{professor.title || 'Professor'}}</small>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                    <button 
+                      class="btn btn-outline-secondary btn-sm mt-2"
+                      (click)="showProfessorList = false">
+                      Cancel
+                    </button>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="d-flex justify-content-between align-items-center">
+              <span>Enrolled Students</span>
+              <button 
+                class="btn btn-primary btn-sm" 
+                (click)="showStudentList = !showStudentList"
+                *ngIf="isProfessor">
+                {{ showStudentList ? 'Done' : 'Manage' }}
+              </button>
+            </h4>
+            <div class="list-group">
+              <ng-container *ngIf="!showStudentList">
+                <div class="list-group-item py-2" *ngFor="let student of course.students">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h6 class="mb-0">{{student.name}}</h6>
+                      <small class="text-muted">{{student.career}} (Year {{student.year}})</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-group-item py-2 text-center text-muted" *ngIf="!course.students?.length">
+                  No students enrolled
+                </div>
+              </ng-container>
+              <ng-container *ngIf="showStudentList">
+                <div 
+                  class="list-group-item py-2" 
+                  *ngFor="let student of allStudents"
+                  [class.active]="isStudentEnrolled(student)"
+                  [class.list-group-item-success]="isStudentEnrolled(student)"
+                  style="cursor: pointer;"
+                  (click)="toggleStudent(student)">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h6 class="mb-0">{{student.name}}</h6>
+                      <small>{{student.career}} (Year {{student.year}})</small>
+                    </div>
+                    <div class="form-check">
+                      <input 
+                        type="checkbox" 
+                        class="form-check-input" 
+                        [checked]="isStudentEnrolled(student)"
+                        (click)="$event.stopPropagation(); toggleStudent(student)">
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-8">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0">Class Schedule</h4>
+            <button 
+              class="btn btn-primary btn-sm" 
+              (click)="showAddClass = true"
+              *ngIf="!showAddClass && isProfessor">
+              Add Class
+            </button>
+          </div>
+
+          <div class="card mb-3" *ngIf="showAddClass">
+            <div class="card-body">
+              <h5 class="card-title">Add New Class</h5>
+              <form (ngSubmit)="addClass()">
+                <div class="mb-3">
+                  <label for="date" class="form-label">Date</label>
+                  <input 
+                    type="date" 
+                    class="form-control" 
+                    id="date" 
+                    [(ngModel)]="newClass.date" 
+                    name="date" 
+                    required>
+                </div>
+                <div class="mb-3">
+                  <label for="classroom" class="form-label">Classroom</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="classroom" 
+                    [(ngModel)]="newClass.classroom" 
+                    name="classroom" 
+                    required 
+                    placeholder="e.g., Room 101">
+                </div>
+                <div class="d-flex gap-2">
+                  <button type="submit" class="btn btn-primary">Add Class</button>
+                  <button type="button" class="btn btn-outline-secondary" (click)="showAddClass = false">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Class #</th>
+                  <th>Date</th>
+                  <th>Classroom</th>
+                  <th *ngIf="isProfessor">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let session of classes">
+                  <td>{{session.number}}</td>
+                  <td>{{session.date}}</td>
+                  <td>{{session.classroom}}</td>
+                  <td *ngIf="isProfessor">
+                    <button 
+                      class="btn btn-danger btn-sm"
+                      (click)="deleteClass(session.id)">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

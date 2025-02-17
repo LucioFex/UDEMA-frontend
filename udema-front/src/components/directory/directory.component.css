@@ -1,0 +1,17 @@
+/* Directory-specific styles */
+.list-group-item {
+  transition: all 0.2s ease;
+}
+
+.list-group-item:hover {
+  transform: translateX(5px);
+  background-color: rgba(11, 77, 60, 0.05);
+}
+
+.bi-chevron-right {
+  transition: transform 0.2s ease;
+}
+
+.list-group-item:hover .bi-chevron-right {
+  transform: translateX(5px);
+}

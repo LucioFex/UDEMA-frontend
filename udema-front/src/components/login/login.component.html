@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Login</h2>
+          
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label d-block">Account Type</label>
+              <div class="btn-group w-100" role="group">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="type"
+                  id="student"
+                  value="student"
+                  [(ngModel)]="userType"
+                  autocomplete="off">
+                <label class="btn btn-outline-primary" for="student">Student</label>
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="type"
+                  id="professor"
+                  value="professor"
+                  [(ngModel)]="userType"
+                  autocomplete="off">
+                <label class="btn btn-outline-primary" for="professor">Professor</label>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                [(ngModel)]="username"
+                name="username"
+                required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                [(ngModel)]="password"
+                name="password"
+                required>
+            </div>
+
+            <div *ngIf="error" class="alert alert-danger">
+              {{error}}
+            </div>
+            
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">Login</button>
+              <a routerLink="/register" class="btn btn-outline-primary">Create Account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

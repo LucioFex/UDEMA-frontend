@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <a routerLink="/directory" class="btn btn-outline-primary mb-4">← Back to Community</a>
+  
+  <div class="card" *ngIf="professor">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="card-title mb-4">{{professor.name}} {{professor.surname}}</h2>
+          <div class="mb-4">
+            <h5 class="text-muted">Academic Information</h5>
+            <p><strong>Title:</strong> {{professor.title || 'Professor'}}</p>
+            <p><strong>Started Working:</strong> {{formatDate(professor.submissionDate)}}</p>
+          </div>
+          <div class="mb-4">
+            <h5 class="text-muted">Teaching Courses</h5>
+            <div class="list-group">
+              <a 
+                *ngFor="let course of teachingCourses" 
+                [routerLink]="['/course', course.id]"
+                class="list-group-item list-group-item-action">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <h6 class="mb-1">{{course.name}}</h6>
+                    <small>{{course.students?.length || 0}} students enrolled</small>
+                  </div>
+                  <i class="bi bi-chevron-right"></i>
+                </div>
+              </a>
+              <div *ngIf="teachingCourses.length === 0" class="list-group-item text-muted">
+                No courses assigned
+              </div>
+            </div>
+          </div>
+          <div>
+            <h5 class="text-muted">Contact Information</h5>
+            <p><strong>Email:</strong> {{professor.email}}</p>
+            <p><strong>Username:</strong> {{professor.username}}</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card bg-light">
+            <div class="card-body">
+              <h5 class="card-title">Personal Details</h5>
+              <p><strong>Age:</strong> {{professor.age}}</p>
+              <p><strong>Date of Birth:</strong> {{formatDate(professor.dateOfBirth)}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Create Account</h2>
+          
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label d-block">Account Type</label>
+              <div class="btn-group w-100" role="group">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="type"
+                  id="student"
+                  value="student"
+                  [(ngModel)]="userData.type"
+                  autocomplete="off">
+                <label class="btn btn-outline-primary" for="student">Student</label>
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="type"
+                  id="professor"
+                  value="professor"
+                  [(ngModel)]="userData.type"
+                  autocomplete="off">
+                <label class="btn btn-outline-primary" for="professor">Professor</label>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label for="name" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  [(ngModel)]="userData.name"
+                  name="name"
+                  required>
+              </div>
+              <div class="col">
+                <label for="surname" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="surname"
+                  [(ngModel)]="userData.surname"
+                  name="surname"
+                  required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                [(ngModel)]="userData.email"
+                name="email"
+                required>
+            </div>
+
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                [(ngModel)]="userData.username"
+                name="username"
+                required>
+            </div>
+
+            <div class="mb-3">
+              <label for="dateOfBirth" class="form-label">Date of Birth</label>
+              <input
+                type="date"
+                class="form-control"
+                id="dateOfBirth"
+                [(ngModel)]="userData.dateOfBirth"
+                (ngModelChange)="calculateAge()"
+                name="dateOfBirth"
+                required>
+            </div>
+
+            <div class="mb-3" *ngIf="userData.type === 'student'">
+              <label for="career" class="form-label">Career</label>
+              <input
+                type="text"
+                class="form-control"
+                id="career"
+                [(ngModel)]="career"
+                name="career"
+                required>
+            </div>
+            
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                [(ngModel)]="userData.password"
+                name="password"
+                required>
+            </div>
+
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="confirmPassword"
+                [(ngModel)]="confirmPassword"
+                name="confirmPassword"
+                required>
+            </div>
+
+            <div *ngIf="error" class="alert alert-danger">
+              {{error}}
+            </div>
+            
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">Create Account</button>
+              <a routerLink="/login" class="btn btn-outline-primary">Already have an account?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
