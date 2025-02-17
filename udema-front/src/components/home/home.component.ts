@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
 import { Course } from '../../models/models';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -64,16 +65,30 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  deleteCourse(id: number): void {
-    if (confirm('Are you sure you want to delete this course?')) {
-      this.apiService.deleteCourse(id).subscribe({
-        next: () => {
-          this.loadCourses();
-        },
-        error: (error) => {
-          console.error('Error deleting course:', error);
-        }
-      });
+  async deleteCourse(id: number): Promise<void> {
+    try {
+      // First, check if the course has any classes
+      const classes = await firstValueFrom(this.apiService.getCourseClasses(id));
+
+      if (classes.length > 0) {
+        alert('Cannot delete this course because it has existing classes. Please remove all classes first.');
+        return;
+      }
+
+      // If no classes exist, proceed with deletion confirmation
+      if (confirm('Are you sure you want to delete this course?')) {
+        this.apiService.deleteCourse(id).subscribe({
+          next: () => {
+            this.loadCourses();
+          },
+          error: (error) => {
+            console.error('Error deleting course:', error);
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Error checking course classes:', error);
+      alert('An error occurred while trying to delete the course. Please try again.');
     }
   }
 }

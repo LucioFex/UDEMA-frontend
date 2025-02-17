@@ -192,7 +192,7 @@ p {
 /* Footer styles */
 .footer {
   background-color: var(--udema-dark-green);
-  padding: 3rem 0;
+  padding: 1.5rem 0;
   margin-top: 3rem;
   color: var(--udema-light-gold);
 }
@@ -205,7 +205,7 @@ p {
 }
 
 .footer-logo {
-  height: 140px;
+  height: 200px;
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
@@ -219,7 +219,7 @@ p {
 .footer-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .footer-text {
@@ -234,7 +234,7 @@ p {
 .social-links {
   display: flex;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .social-link {

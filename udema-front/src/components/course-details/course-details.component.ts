@@ -107,7 +107,7 @@ export class CourseDetailsComponent implements OnInit {
     if (!this.isProfessor || !this.course) return;
 
     const wasEnrolled = this.selectedStudentIds.has(student.id);
-
+    
     if (wasEnrolled) {
       this.apiService.removeStudentFromCourse(this.course.id, student.id).subscribe({
         next: () => {
@@ -149,15 +149,13 @@ export class CourseDetailsComponent implements OnInit {
   deleteClass(classId: number): void {
     if (!this.course || !this.isProfessor) return;
 
-    if (confirm('Are you sure you want to delete this class?')) {
-      this.apiService.deleteClassSession(this.course.id, classId).subscribe({
-        next: () => {
-          this.loadCourseData(this.course!.id);
-        },
-        error: (error) => {
-          console.error('Error deleting class:', error);
-        }
-      });
-    }
+    this.apiService.deleteClassSession(this.course.id, classId).subscribe({
+      next: () => {
+        this.loadCourseData(this.course!.id);
+      },
+      error: (error) => {
+        console.error('Error deleting class:', error);
+      }
+    });
   }
 }
