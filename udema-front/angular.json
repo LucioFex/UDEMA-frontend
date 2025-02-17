@@ -28,7 +28,9 @@
             "styles": [
               "src/global_styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/loading-screen.js"
+            ]
           },
           "configurations": {
             "production": {
